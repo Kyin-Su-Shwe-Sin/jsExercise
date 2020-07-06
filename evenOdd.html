@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .mainDiv{
+            width: 50%;
+            height: 50% ;
+        }
+        .evenDiv{
+            width: 35%;
+            float: left;
+            height: 100%;
+            color: darkslategrey;
+        }
+        .oddDiv{
+            width: 35%;
+            float: left;
+            height: 100%;
+            color: maroon;
+        }
+        .mainDiv ::after{
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="inputDiv">
+        <form>
+            <label for="from" style="color: seagreen; font-size: 20px;"> Enter a Number : </label>
+            <input type="number" name="num1" id="num1" placeholder="Start Number..." style="width: 250px; height: 30px; 
+            border-radius: 5px; margin-left: 50px;">
+             <br><br><br>
+            <label for="to" style="color: seagreen; font-size: 20px;"> Enter a Number : </label>
+            <input type="number" name="num2" id="num2" placeholder="End Number..." style="width: 250px; height: 30px;
+             border-radius: 5px; margin-left: 50px;"> <br><br><br>
+            <input type="button" value="Check Even Odd" onclick="check()" style="margin: 5px 90px; width: 150px; height:50px;
+             background-color:seagreen">
+        </form>
+    </div>
+    <div class="mainDiv">
+        <div class="evenDiv">
+            <h3>Even Number : </h3>
+            <p id="even"></p>
+        </div>
+        <div class="oddDiv">
+            <h3>Odd Number : </h3>
+            <p id="odd"></p>
+        </div>
+    </div>
+
+    <script>
+        function check(){
+            var start=parseInt(document.getElementById("num1").value);
+            var end=parseInt(document.getElementById("num2").value);
+            for(var i=start; i<=end; i++){
+                if(i%2 === 0){
+                    document.getElementById("even").innerHTML += i +"<br>";
+                }else{
+                    document.getElementById("odd").innerHTML += i +"<br>"
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
