@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function dividing(){
+            var start=parseInt(document.getElementById("num1").value);
+            var end=parseInt(document.getElementById("num2").value);
+            for(var i=start; i<=end; i++){
+                if(i%2 === 0 && i%5 === 0){
+                    document.getElementById("dividingNo").innerHTML+=i+"<br>";
+                }
+            }   
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="from" style="color: seagreen; font-size: 20px;"> Enter a Number : </label>
+        <input type="number" name="num1" id="num1" placeholder="Start Number..." style="width: 250px; height: 30px; 
+        border-radius: 5px; margin-left: 50px; margin-top: 50px;"> <br>
+        <label for="to" style="color: seagreen; font-size: 20px;"> Enter a Number : </label>
+        <input type="number" name="num2" id="num2" placeholder="End Number..." style="width: 250px; height: 30px; 
+        border-radius: 5px; margin-left: 50px; margin-top: 50px;"> <br>
+        <input type="button" value="Dividing 2 and 5" onclick="dividing()" style="margin: 5px 90px; width: 150px; height:50px;
+        background-color:seagreen; margin-top: 50px;">
+    </form>
+    <p id="dividingNo" style="color: seagreen; margin: 30px 150px;"></p>
+</body>
+</html>
