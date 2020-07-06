@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function check(){
+            var d=new Date();
+            var current=d.getFullYear();
+            var dateValue=document.getElementById("myDate").value;
+            var inputDate=new Date(dateValue);
+            var age=inputDate.getFullYear();
+            var currentAge=current - age;
+            if(currentAge < 18){
+                document.getElementById("ageCheck").innerHTML="Yes. Your age is under 18.";
+            }else{
+                document.getElementById("ageCheck").innerHTML="NO, Your age is not under 18";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label> Enter Your Age : </label>
+        <input type="date" id="myDate" style="width: 150px; height: 50px; background-color: darkslategrey;"><br><br>
+        <input type="button" value="Check Age" onclick="check()" style="background-color: dimgray; width: 150px; height: 50px;">
+    </form>
+    <p id="ageCheck"></p>
+</body>
+</html>
