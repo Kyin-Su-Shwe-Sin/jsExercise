@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function add(){
+            var value1=parseInt(document.getElementById("num1").value);
+            var value2=parseInt(document.getElementById("num2").value);
+            document.getElementById("showAnswer").innerHTML+=value1+value2+"<br>";
+        }
+        function subtract(){
+            var value1=parseInt(document.getElementById("num1").value);
+            var value2=parseInt(document.getElementById("num2").value);
+            document.getElementById("showAnswer").innerHTML+=value1-value2+"<br>";
+        }
+        function multiply(){
+            var value1=parseInt(document.getElementById("num1").value);
+            var value2=parseInt(document.getElementById("num2").value);
+            document.getElementById("showAnswer").innerHTML+=value1*value2+"<br>";
+        }
+        function divide(){
+            var value1=parseInt(document.getElementById("num1").value);
+            var value2=parseInt(document.getElementById("num2").value);
+            document.getElementById("showAnswer").innerHTML+=value1/value2+"<br>";
+        }
+    </script>
+</head>
+<body>
+    <label style="color: seagreen; font-size: 20px;"> Enter a Number for Operation : </label>
+    <input type="number" name="num1" id="num1" style="width: 250px; height: 30px; 
+    border-radius: 5px; margin-left: 50px; margin-top: 50px;"> <br>
+    <label style="color: seagreen; font-size: 20px;"> Enter a Number for Operation : </label>
+    <input type="number" name="num2" id="num2" style="width: 250px; height: 30px; 
+    border-radius: 5px; margin-left: 50px;  margin-top: 50px;"> <br>
+    <div style="margin: 50px 50px">
+        <input type="button" value="+" onclick="add()" style="width: 100px; height: 30px; background-color: darkslategrey;">
+        <input type="button" value="-" onclick="subtract()" style="width: 100px; height: 30px; background-color: darkslategrey;">
+        <input type="button" value="*" onclick="multiply()" style="width: 100px; height: 30px; background-color: darkslategrey;">
+        <input type="button" value="/" onclick="divide()" style="width: 100px; height: 30px; background-color: darkslategrey;">
+    </div>
+    <p id="showAnswer"></p>
+</body>
+</html>
