@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul li{
+            margin: 30px 50px 30px;
+        }
+    </style>
+
+    <script>
+        function addTask(){
+            var taskValue=document.getElementById("task").value;
+
+            var x=document.getElementById("tasklist");
+            var y=document.createElement("li");
+            var addingTask=document.createTextNode(taskValue);
+            y.appendChild(addingTask);
+            x.appendChild(y);
+
+            var deleteButton=document.createElement("button");
+            deleteButton.innerHTML="Delete";
+            y.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click", function(){
+                x.removeChild(y);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <h3 style="margin: 30px 70px 30px;">Today Task</h3>
+        <label style="margin: 10px 20px 10px"> Task Name : </label>
+        <input type="text" id="task" style="width: 300px; height: 30px;">
+
+        <button type="button" id="add" onclick="addTask()" style="width: 150px; height: 30px;
+         text-align: center; margin-left: 30px;"> Add</button>
+    </form>
+
+    <h3 style="margin: 30px 70px 30px;">Task list</h3>
+    <ul id="tasklist">
+
+    </ul>
+</body>
+</html>
