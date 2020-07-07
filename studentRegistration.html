@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .leftDiv{
+            float: left;
+            margin: 30px 70px 30px;
+        }
+        .rightDiv{
+            float: left;
+            margin: 30px 100px 30px;
+        }
+        #student{
+            border-collapse: collapse;
+            width: 70%;
+        }
+        #student th{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: darkslategrey;
+            color: white;
+        }
+        #student td, #student th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #student tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+        #student tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+    <script>
+        function StudentData(){
+            var nameValue=document.getElementById("name").value;
+            var phoneValue=document.getElementById("phone").value;
+            var emailValue=document.getElementById("email").value;
+            var rollValue=document.getElementById("rollNo").value;
+            var addressValue=document.getElementById("address").value;
+            
+            var genderValue = document.getElementsByName('gender');
+            var genderResult="";
+            for( var i = 0; i < genderValue.length; i++){
+                if(genderValue[i].checked){
+                    genderResult=genderValue[i].value;
+                }
+            }
+
+            var languageValue="";
+            if(document.getElementById("java").checked){
+                languageValue += document.getElementById("java").value;
+            }else if(document.getElementById("php").checked){
+                languageValue += document.getElementById("php").value;
+            }else if(document.getElementById("mobile").checked){
+                languageValue += document.getElementById("mobile").value;
+            }
+
+            var x=document.getElementById("student");
+
+            var y = document.createElement("TR");
+            y.setAttribute("id","myTR");
+            x.appendChild(y);
+
+            var z = document.createElement("TD");
+            z.setAttribute("id","myTD");
+            var t = document.createTextNode(nameValue);
+            z.appendChild(t);
+            y.appendChild(z);
+
+            var phone = document.createElement("TD");
+            phone.setAttribute("id","myTD");
+            var ph = document.createTextNode(phoneValue);
+            phone.appendChild(ph);
+            y.appendChild(phone);
+
+            var email = document.createElement("TD");
+            email.setAttribute("id","myTD");
+            var em = document.createTextNode(emailValue);
+            email.appendChild(em);
+            y.appendChild(email);
+
+            var roll = document.createElement("TD");
+            roll.setAttribute("id","myTD");
+            var rn = document.createTextNode(rollValue);
+            roll.appendChild(rn);
+            y.appendChild(roll);
+
+            var add = document.createElement("TD");
+            add.setAttribute("id","myTD");
+            var a = document.createTextNode(addressValue);
+            add.appendChild(a);
+            y.appendChild(add);
+
+            var gender = document.createElement("TD");
+            gender.setAttribute("id","myTD");
+            var gd = document.createTextNode(genderResult);
+            gender.appendChild(gd);
+            y.appendChild(gender);
+
+            var Language = document.createElement("TD");
+            Language.setAttribute("id","myTD");
+            var lg = document.createTextNode(languageValue);
+            Language.appendChild(lg);
+            y.appendChild(Language);
+        }
+
+        function clear(){
+            document.getElementById("name").reset();
+            document.getElementById("phone").reset();
+            document.getElementById("email").reset();
+            document.getElementById("rollNo").reset();
+            document.getElementById("address").reset();
+            document.getElementById("male").reset();
+            document.getElementById("female").reset();
+            document.getElementById("java").reset();
+            document.getElementById("php").reset();
+            document.getElementById("mobile").reset();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="leftDiv">
+            <input type="text" id="name" placeholder="Name" style="width: 300px; height: 30px; padding-left: 15px;"> <br><br>
+            <input type="text" id="phone" placeholder="Phone" style="width: 300px; height: 30px; padding-left: 15px;" > <br><br>
+            <input type="text" id="email" placeholder="Email" style="width: 300px; height: 30px; padding-left: 15px;"> <br><br>
+            <input type="text" id="rollNo" placeholder="Roll NO" style="width: 300px; height: 30px; padding-left: 15px;"> <br><br>
+            <textarea id="address" cols="40" rows="5" placeholder="Address" style="padding-left: 15px; padding-top: 10px;"></textarea>
+        </div>
+        <div class="rightDiv">
+            <input type="radio" id="male" name="gender" value="male" style="margin-left: 35px;">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" style="margin-left: 35px;">
+            <label for="female">Female</label> <br><br><br>
+
+            <input type="checkbox" id="java" name="java" value="java" style="margin-left: 35px;">
+            <label for="java"> Java </label>
+            <input type="checkbox" id="php" name="php" value="PHP" style="margin-left: 35px;">
+            <label for="php"> PHP </label>
+            <input type="checkbox" id="mobile" name="mobile" value="Mobile" style="margin-left: 35px;">
+            <label for="mobile"> Mobile </label><br><br><br>
+
+            <button type="button" onclick="StudentData()" style="width: 150px; height: 50px; text-align: center; margin-left: 20px; margin-top: 70px;">Save</button>
+
+            <button type="button" onclick="clear()" style="width: 150px; height: 50px; text-align: center; margin-left: 70px; margin-top: 70px;">Clear</button>
+        </div>
+    </div>
+    <table id="student">
+        <tr>
+            <th>Name</th>
+            <th>Phone No</th>
+            <th>Email</th>
+            <th>Roll NO</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Language</th>
+        </tr>
+    </table>
+
+</body>
+</html>
