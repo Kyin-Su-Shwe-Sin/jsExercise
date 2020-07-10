@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="budget.css">
+
+    <script>
+        var totalBudget=0;
+        var totalExpense=0;
+        $(document).ready(function(){
+            $("#button1").click(function(){
+                var budgetValue=$("#Budget").val();
+                totalBudget+=parseInt(budgetValue);
+                $("#calcBudget1").text(totalBudget);
+                calcBalance();
+            });
+
+            $("#button2").click(function(){
+                var exTitle=$("#expenseName").val();
+                $("#exCalc").append(" - "+exTitle+"<br>");
+                var exAmount=$("#expenseAmount").val();
+                totalExpense+=parseInt(exAmount);
+                $("#calcExpense").text(totalExpense);
+                $("#exVal").append(exAmount+"<br>");
+                calcBalance();
+            });
+
+            function calcBalance(){
+                var bal=totalBudget-totalExpense;
+                $("#calcBalance").text(bal);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="mainDiv">
+        <div class="first">
+            <div class="first1">
+                <form id="form1" style="border: solid green;margin: 30px 10px 30px; padding: 20px 10px;">
+                    <label for="budget">Please Enter Your Budget</label><br>
+                    <input type="text" id="Budget" style="width: 350px; height: 25px; margin: 15px 10px 30px;"><br>
+                    <input type="button" onclick="calcBudget()" id="button1" style="color: green;width: 100px; height: 27px;" value="Calculate">
+                </form>
+            </div>
+            <div class="first2">
+                <label for="budget">BUDGET</label><br>
+                <i class="fa fa-money" style="font-size:50px;color:blue; padding-top: 10px; padding-bottom: 5px;"></i> <br>
+                <label for="calcBudget">$</label>
+                <label id="calcBudget1"></label>
+            </div>
+            <div class="first3">
+                <label for="expense">EXPENSES</label><br>
+                <i class="fa fa-credit-card" style="font-size:50px;color:blue; padding-top: 10px; padding-bottom: 5px;"></i><br>
+                <label for="calcExpense">$</label>
+                <label id="calcExpense"></label>
+            </div>
+            <div class="first4">
+                <label for="Balance">BALANCE</label><br>
+                <i class="fa fa-usd" style="font-size:40px;color:blue;padding-top: 15px; padding-bottom: 5px;"></i><br>
+                <label for="calcBalance">$</label>
+                <label id="calcBalance"></label>
+            </div>
+        </div>
+        <div class="second">
+            <div class="second1">
+                <form id="form2" style="border: solid red;margin: 20px 10px 20px; padding: 20px 10px;">
+                    <label for="expenseName">Please Enter Your Expense</label><br>
+                    <input type="text" id="expenseName" style="width: 350px; height: 25px; margin: 10px 10px 10px;"><br>
+                    <label for="expenseAmount">Please Enter Expense Amount</label><br>
+                    <input type="text" id="expenseAmount" style="width: 350px; height: 25px; margin: 10px 10px 10px;"><br>
+                   <input type="button" onclick="calcExpense()" id="button2" style="color: red;width: 100px; height: 27px;" value="Add Expense">
+                </form>
+            </div>
+            <div class="second2">
+                <label for="expenseTitle">Expense Title</label><br>
+                <label id="exCalc" ></label>
+            </div>
+            <div class="second3">
+                <label for="expenseValue">Expense Value</label><br>
+                <label for="exValue"></label>
+                <label id="exVal"></label>
+            </div>
+            <div class="second4">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash-o" style="font-size:48px;color:red"></i>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

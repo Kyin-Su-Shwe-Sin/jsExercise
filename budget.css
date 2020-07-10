@@ -1,0 +1,49 @@
+.mainDiv{
+    width: 65%;
+    height: 500px;
+    background-color: gray;
+    margin: 50px 10% 20px;
+}
+
+.first{
+    width: 95%;
+    height: 45%;
+    
+    margin: 10px 25px 10px;
+}
+
+.second{
+    width: 95%;
+    height: 50%;
+    
+    margin: 10px 25px 10px;
+}
+
+.first1, .second1{
+    width: 45%;
+    height: 97%;
+    float: left;
+    margin: 5px 15px 5px;
+}
+.first2, .second2{
+    width: 10%;
+    height: 75%;
+    float: left; 
+    margin-top: 50px;
+    margin-left: 50px;
+    
+}
+.first3, .second3{
+    width: 13%;
+    height: 75%;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.first4, .second4{
+    width: 10%;
+    height: 75%;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+}
