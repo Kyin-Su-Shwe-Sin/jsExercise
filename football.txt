@@ -1,0 +1,129 @@
+mysql> select * from team;
++--------+-----------+--------------+
+| teamid | teamName  | foundeddadte |
++--------+-----------+--------------+
+|      1 | ManU      | 1880-12-05   |
+|      2 | Liverpool | 1892-04-03   |
+|      3 | Chelsea   | 1905-03-10   |
+|      4 | Arsenal   | 1886-06-10   |
+|      5 | Barcelona | 1899-11-29   |
++--------+-----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from footballplayer;
++----------+------------+---------+-----+--------+--------+--------+
+| playerid | playerName | jersyno | age | salary | height | teamid |
++----------+------------+---------+-----+--------+--------+--------+
+|        1 | Ronaldo    |       7 |  25 | 700000 |      6 |      1 |
+|        2 | Kepa       |      10 |  27 | 500000 |    5.8 |      3 |
+|        3 | Daniel     |      11 |  27 | 500000 |    5.9 |      3 |
+|        4 | Lucas      |      11 |  27 | 600000 |    5.7 |      2 |
+|        5 | Marcus     |      12 |  23 | 650000 |    6.1 |      1 |
+|        6 | Leno       |       9 |  23 | 750000 |      6 |      5 |
+|        7 | Kepa       |      17 |  28 | 650000 |   5.11 |      2 |
+|        8 | Tammy      |      19 |  24 | 550000 |    5.1 |      5 |
+|        9 | Sead       |      13 |  23 | 850000 |   5.11 |      2 |
+|       10 | Paul       |      20 |  29 | 700000 |    5.1 |      3 |
+|       11 | Hector     |       3 |  23 | 700000 |    6.1 |      1 |
+|       12 | Zech       |       8 |  27 | 600000 |    5.7 |      1 |
+|       13 | Trent      |      26 |  25 | 700000 |   5.11 |      4 |
+|       14 | Reiss      |      26 |  23 | 750000 |   5.11 |      4 |
+|       15 | Reiss      |       5 |  28 | 650000 |      6 |      2 |
++----------+------------+---------+-----+--------+--------+--------+
+15 rows in set (0.00 sec)
+
+
+mysql> select * from team where teamid=1;
++--------+----------+--------------+
+| teamid | teamName | foundeddadte |
++--------+----------+--------------+
+|      1 | ManU     | 1880-12-05   |
++--------+----------+--------------+
+1 row in set (0.02 sec)
+
+
+mysql> select * from footballplayer where salary > 600000;
++----------+------------+---------+-----+--------+--------+--------+
+| playerid | playerName | jersyno | age | salary | height | teamid |
++----------+------------+---------+-----+--------+--------+--------+
+|        1 | Ronaldo    |       7 |  25 | 700000 |      6 |      1 |
+|        5 | Marcus     |      12 |  23 | 650000 |    6.1 |      1 |
+|        6 | Leno       |       9 |  23 | 750000 |      6 |      5 |
+|        7 | Kepa       |      17 |  28 | 650000 |   5.11 |      2 |
+|        9 | Sead       |      13 |  23 | 850000 |   5.11 |      2 |
+|       10 | Paul       |      20 |  29 | 700000 |    5.1 |      3 |
+|       11 | Hector     |       3 |  23 | 700000 |    6.1 |      1 |
+|       13 | Trent      |      26 |  25 | 700000 |   5.11 |      4 |
+|       14 | Reiss      |      26 |  23 | 750000 |   5.11 |      4 |
+|       15 | Reiss      |       5 |  28 | 650000 |      6 |      2 |
++----------+------------+---------+-----+--------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select teamName, (select sum(salary) from footballplayer where footballplayer.teamid = team.teamid)as totalSalary from team;
++-----------+-------------+
+| teamName  | totalSalary |
++-----------+-------------+
+| ManU      |     2650000 |
+| Liverpool |     2750000 |
+| Chelsea   |     1700000 |
+| Arsenal   |     1450000 |
+| Barcelona |     1300000 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from footballplayer where height < 6;
++----------+------------+---------+-----+--------+--------+--------+
+| playerid | playerName | jersyno | age | salary | height | teamid |
++----------+------------+---------+-----+--------+--------+--------+
+|        2 | Kepa       |      10 |  27 | 500000 |    5.8 |      3 |
+|        3 | Daniel     |      11 |  27 | 500000 |    5.9 |      3 |
+|        4 | Lucas      |      11 |  27 | 600000 |    5.7 |      2 |
+|        7 | Kepa       |      17 |  28 | 650000 |   5.11 |      2 |
+|        8 | Tammy      |      19 |  24 | 550000 |    5.1 |      5 |
+|        9 | Sead       |      13 |  23 | 850000 |   5.11 |      2 |
+|       10 | Paul       |      20 |  29 | 700000 |    5.1 |      3 |
+|       12 | Zech       |       8 |  27 | 600000 |    5.7 |      1 |
+|       13 | Trent      |      26 |  25 | 700000 |   5.11 |      4 |
+|       14 | Reiss      |      26 |  23 | 750000 |   5.11 |      4 |
++----------+------------+---------+-----+--------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select teamName, (select avg(salary) from footballplayer where footballplayer.teamid = team.teamid)as averageSalary from team;
++-----------+---------------+
+| teamName  | averageSalary |
++-----------+---------------+
+| ManU      |   662500.0000 |
+| Liverpool |   687500.0000 |
+| Chelsea   |   566666.6667 |
+| Arsenal   |   725000.0000 |
+| Barcelona |   650000.0000 |
++-----------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select playerName, salary from footballplayer where salary in(select max(salary) from footballplayer);
++------------+--------+
+| playerName | salary |
++------------+--------+
+| Sead       | 850000 |
++------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select playerName, salary from footballplayer where salary in(select min(salary) from footballplayer);
++------------+--------+
+| playerName | salary |
++------------+--------+
+| Kepa       | 500000 |
+| Daniel     | 500000 |
++------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from footballplayer where age>25 and salary > 700000;
+Empty set (0.00 sec)
+
+mysql> select * from footballplayer where age>25 and salary > 650000;
++----------+------------+---------+-----+--------+--------+--------+
+| playerid | playerName | jersyno | age | salary | height | teamid |
++----------+------------+---------+-----+--------+--------+--------+
+|       10 | Paul       |      20 |  29 | 700000 |    5.1 |      3 |
++----------+------------+---------+-----+--------+--------+--------+
+1 row in set (0.00 sec)
