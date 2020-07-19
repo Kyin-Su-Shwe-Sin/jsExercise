@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <script>
+    var studentList = [];
+    $(document).ready(function () {
+      $("#myButton").click(function () {
+        window.location = "localStorageShow.html";
+
+        var sname = $("#name").val();
+        var sroll = $("#rollno").val();
+        var semail = $("#email").val();
+        if (localStorage.getItem("studentKey") != undefined) {
+          studentList = JSON.parse(localStorage.getItem("studentKey"));
+
+        }
+        var studentObj = { stdName: sname, stdRoll: sroll, stdEmail: semail };
+        studentList.push(studentObj);
+        alert(studentList.length);
+        localStorage.setItem("studentKey", JSON.stringify(studentList));
+
+      });
+
+    //   if (localStorage.getItem("studentKey") != undefined) {
+    //   studentList = JSON.parse(localStorage.getItem("studentKey"));
+    //   alert(studentList.length);
+    //   studentList.forEach(function (val, i) {
+    //     $("#result").append(
+    //       "Name : " + val.stdName +
+    //       "Roll No : " + val.stdRoll +
+    //       "Email : " + val.stdEmail +
+    //       ' <i class="fas fa-edit" style="font-size:20px; color:blue" onclick="editFunction(' + i + ')"></i>' +
+    //       "<br>"
+    //     );
+    //   });
+
+    // }
+
+    });
+    // var editForm = [];
+    // function editFunction(index) {
+    //   editForm = JSON.parse(localStorage.getItem("studentKey"));
+    //   for (var i = 0; i <= editForm.length; i++) {
+    //     if (i == index) {
+    //       alert(editForm[i].stdName);
+    //       $("#name").val(editForm[i].stdName);
+    //       $("#rollno").val(editForm[i].stdRoll);
+    //       $("#email").val(editForm[i].stdEmail);
+    //       $("#myid").val(i);
+    //     }
+    //   }
+    // }
+
+    var stdEditList = [];
+    function editButton() {
+      window.location = "localStorageShow.html";
+      alert("hello");
+      var sname1 = $("#name").val();
+      var sroll1 = $("#rollno").val();
+      var semail1 = $("#email").val();
+      var sid = $("#myid").val();
+      var stdEditList = JSON.parse(localStorage.getItem("studentKey"));
+      for (var j = 0; j <= stdEditList.length; j++) {
+        if (sid == j) {
+          stdEditList[j].stdName = sname1;
+          stdEditList[j].stdRoll = sroll1;
+          stdEditList[j].stdEmail = semail1;
+        }
+      }
+      alert("say hi");
+      localStorage.setItem("studentKey", JSON.stringify(stdEditList));
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Student form</h2>
+    <form>
+      <input type="hidden" id="myid">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="rollno">Roll No:</label>
+        <input type="text" class="form-control" id="rollno" placeholder="Enter Roll NO" name="rollno">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+      <button type="submit" class="btn btn-primary" id="myButton">Submit</button>
+      <button type="button" class="btn btn-primary" onclick="editButton()">Update</button>
+    </form>
+  </div>
+
+  <script>
+    var urlParams=new URLSearchParams(window.location.search);
+      var n=urlParams.get('name');
+      var r=urlParams.get('roll');
+      var e=urlParams.get('email');
+      var id=urlParams.get('id');
+      $("#name").val(n);
+      $("#rollno").val(r);
+      $("#email").val(e);
+     $("#myid").val(id);
+ 
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      var showStudent = [];
+      if (localStorage.getItem("studentKey") != undefined) {
+        showStudent = JSON.parse(localStorage.getItem("studentKey"));
+        showStudent.forEach(function (val, i) {
+          $("#myBody").append(
+            "<tr id='studentRow'>"
+            + "<td>" + val.stdName + "</td>"
+            + "<td>" + val.stdRoll + "</td>"
+            + "<td>" + val.stdEmail + "</td>"
+            + "<td> <i class='fas fa-edit' style='font-size:20px;color:red' onclick='editIcon(" + i + ")'></i>"
+            + "<i class='fa fa-trash-o' style='font-size:23px;color:red' onclick='deleteIcon(" + i + ")'></i> </td>"
+            + "</tr>"
+          );
+        });
+      }
+    });
+
+    var editForm = [];
+    function editIcon(index) {
+
+      editForm = JSON.parse(localStorage.getItem("studentKey"));
+      window.location = "localStorageTest.html?id=" + index + "&name=" + editForm[index].stdName +
+      "&roll=" + editForm[index].stdRoll + "&email=" + editForm[index].stdEmail;
+
+    }
+
+    var deleteForm=[];
+    function deleteIcon(index){
+      var x=JSON.parse(localStorage.getItem("studentKey"));
+      for(var j=0; j<= x.length; j++){
+        if(x[index]!=x[j])
+        {
+            deleteForm.push(x[j]);
+        }
+      }
+      localStorage.removeItem("studentKey");
+    localStorage.setItem("studentKey",JSON.stringify(deleteForm));
+    alert("Successful Deleted!");
+    // window.location="showItem.html";
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Student Table</h2>
+    <form>
+      <input type="hidden" id="myid">
+    </form>
+    <table class="table table-dark table-hover" id="studentTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="myBody">
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
