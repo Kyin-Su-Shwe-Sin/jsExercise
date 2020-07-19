@@ -1,0 +1,37 @@
+mysql> select food.foodName, orderfood.qty from food, orderfood where orderfood.qty in (select max(qty) from orderfood) and food.foodid = orderfood.orderid;
+Empty set (0.00 sec)
+
+mysql> select food.foodName, orderfood.qty from food, orderfood where orderfood.qty in (select min(qty) from orderfood) and food.foodid = orderfood.orderid;
++-----------------+-----+
+| foodName        | qty |
++-----------------+-----+
+| espresso coffee |   1 |
+| seafood pizza   |   1 |
+| shan noodle     |   1 |
++-----------------+-----+
+3 rows in set (0.00 sec)
+
+mysql> select saleDate, sum(totalPrice) from orderfood group by saleDate;
++------------+-----------------+
+| saleDate   | sum(totalPrice) |
++------------+-----------------+
+| 2020-06-05 |           18000 |
+| 2020-07-05 |            9000 |
+| 2020-01-05 |            2000 |
+| 2020-03-05 |            4000 |
+| 2020-03-10 |            8000 |
+| 2020-04-10 |           25000 |
+| 2020-07-10 |           14000 |
+| 2020-06-10 |           16000 |
+| 2020-05-10 |           26000 |
+| 2020-02-10 |            8000 |
++------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select saleDate, sum(totalPrice) from orderfood where saleDate between '2020-04-10' and '2020-7-10';
++------------+-----------------+
+| saleDate   | sum(totalPrice) |
++------------+-----------------+
+| 2020-06-05 |          108000 |
++------------+-----------------+
+1 row in set (0.01 sec)
